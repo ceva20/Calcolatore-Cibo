@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Calcolatore Cibo Cotto</title>
+  <title>Calcolatore Cibo</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -37,24 +37,24 @@
   </style>
 </head>
 <body>
-  <h1>Calcolatore Cibo Cotto</h1>
+  <h1>Calcolatore Cibo</h1>
   <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
 
-  <label for="pentola">Seleziona pentola:</label>
-  <select id="pentola">
+  <label for="contenitore">Seleziona contenitore:</label>
+  <select id="contenitore">
     <option value="0">Nessuna</option>
-    <option value="700">Pentola 22cm - 700g</option>
-    <option value="900">Pentola 28cm - 900g</option>
+    <option value="700">Contenitore 22cm - 700g</option>
+    <option value="900">Contenitore 28cm - 900g</option>
     <option value="1500">Pentolone 32cm - 1500g</option>
   </select>
 
-  <label>Peso totale cucinato (cibo + pentola) (g):</label>
+  <label>Peso totale cucinato (cibo + contenitore) (g):</label>
   <input type="number" id="pesoTotale" />
 
   <label>Peso cibo crudo (g):</label>
   <input type="number" id="crudoTotale" />
 
-  <label>Dose desiderata in crudo (g):</label>
+  <label>Dose desiderata da crudo (g):</label>
   <input type="number" id="doseCruda" />
 
   <button onclick="calcola()">Calcola</button>
@@ -62,8 +62,21 @@
   <div class="result" id="risultato"></div>
 
   <script>
+    // Recupera il contenitore salvato al caricamento
+    window.onload = () => {
+      const savedContenitore = localStorage.getItem("contenitore");
+      if (savedContenitore) {
+        document.getElementById("contenitore").value = savedContenitore;
+      }
+    };
+
+    // Salva ogni volta che cambia la selezione
+    document.getElementById("contenitore").addEventListener("change", (e) => {
+      localStorage.setItem("contenitore", e.target.value);
+    });
+
     function calcola() {
-      const pesoPentola = parseFloat(document.getElementById("pentola").value);
+      const pesoContenitore = parseFloat(document.getElementById("contenitore").value);
       const pesoTotale = parseFloat(document.getElementById("pesoTotale").value);
       const crudo = parseFloat(document.getElementById("crudoTotale").value);
       const dose = parseFloat(document.getElementById("doseCruda").value);
@@ -73,17 +86,18 @@
         return;
       }
 
-      const pesoCotto = pesoTotale - pesoPentola;
+      const pesoCotto = pesoTotale - pesoContenitore;
 
       if (pesoCotto <= 0) {
-        document.getElementById("risultato").innerText = "Attenzione: il peso della pentola è maggiore o uguale al peso totale!";
+        document.getElementById("risultato").innerText =
+          "Errore: il peso del contenitore è maggiore o uguale al peso totale. Controlla i dati inseriti.";
         return;
       }
 
       const risultato = (pesoCotto / crudo) * dose;
 
-      document.getElementById("risultato").innerText =
-        `Il peso netto del cibo cotto è ${pesoCotto}g.\nDevi mangiarne ${risultato.toFixed(1)} g.`;
+      document.getElementById("risultato").innerHTML =
+        `Il peso netto del cibo cotto è <strong>${pesoCotto}g</strong>.<br>Devi mangiarne <strong>${risultato.toFixed(1)}g</strong>.`;
     }
   </script>
 </body>
