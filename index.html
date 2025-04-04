@@ -4,39 +4,86 @@
   <meta charset="UTF-8">
   <title>Calcolatore Cibo Cotto</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 2em auto; padding: 1em; background: #f2f2f2; }
-    input, button { padding: 0.5em; margin: 0.5em 0; width: 100%; }
-    .result { font-weight: bold; margin-top: 1em; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 2em auto;
+      padding: 1em;
+      background: #f7f7f7;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
-  <h1>Calcola la Dose di Cibo Cotto</h1>
+  <h1>Calcolatore Cibo Cotto</h1>
+  <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
+
+  <label for="pentola">Seleziona pentola:</label>
+  <select id="pentola">
+    <option value="0">Nessuna</option>
+    <option value="700">Pentola 22cm - 700g</option>
+    <option value="900">Pentola 28cm - 900g</option>
+    <option value="1500">Pentolone 32cm - 1500g</option>
+  </select>
+
+  <label>Peso totale cucinato (cibo + pentola) (g):</label>
+  <input type="number" id="pesoTotale" />
+
   <label>Peso cibo crudo (g):</label>
   <input type="number" id="crudoTotale" />
-
-  <label>Peso cibo cotto (g):</label>
-  <input type="number" id="cottoTotale" />
 
   <label>Dose desiderata in crudo (g):</label>
   <input type="number" id="doseCruda" />
 
-  <button onclick="calcola()">Calcola dose cotta</button>
+  <button onclick="calcola()">Calcola</button>
 
   <div class="result" id="risultato"></div>
 
   <script>
     function calcola() {
+      const pesoPentola = parseFloat(document.getElementById("pentola").value);
+      const pesoTotale = parseFloat(document.getElementById("pesoTotale").value);
       const crudo = parseFloat(document.getElementById("crudoTotale").value);
-      const cotto = parseFloat(document.getElementById("cottoTotale").value);
       const dose = parseFloat(document.getElementById("doseCruda").value);
 
-      if (!crudo || !cotto || !dose) {
-        document.getElementById("risultato").innerText = "Inserisci tutti i valori.";
+      if (!pesoTotale || !crudo || !dose || pesoTotale <= 0 || crudo <= 0 || dose <= 0) {
+        document.getElementById("risultato").innerText = "Inserisci tutti i valori correttamente.";
         return;
       }
 
-      const risultato = (cotto / crudo) * dose;
-      document.getElementById("risultato").innerText = `Devi mangiare ${risultato.toFixed(1)} g di cibo cotto.`;
+      const pesoCotto = pesoTotale - pesoPentola;
+
+      if (pesoCotto <= 0) {
+        document.getElementById("risultato").innerText = "Attenzione: il peso della pentola è maggiore o uguale al peso totale!";
+        return;
+      }
+
+      const risultato = (pesoCotto / crudo) * dose;
+
+      document.getElementById("risultato").innerText =
+        `Il peso netto del cibo cotto è ${pesoCotto}g.\nDevi mangiarne ${risultato.toFixed(1)} g.`;
     }
   </script>
 </body>
