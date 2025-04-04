@@ -35,11 +35,21 @@
       font-size: 18px;
     }
     .carosello {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0;
-    }
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+.carosello::-webkit-scrollbar {
+  height: 8px;
+}
+.carosello::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
     .contenitore {
       border: 2px solid transparent;
       padding: 5px;
@@ -89,7 +99,7 @@
       <div class="label">22cm - 790g</div>
     </div>
     
-    <div class="contenitore" data-peso="1500" id="c3">
+    <div class="contenitore" data-peso="1500" id="c17">
       <img src="icone_contenitori/pentolino.png" alt="pentolino">
       <div class="label">16cm - 470g</div>
     </div>
@@ -222,6 +232,38 @@
       document.getElementById("risultato").innerHTML =
         `Il peso netto del cibo cotto è <strong>${pesoCotto}g</strong>.<br>Devi mangiarne <strong>${risultato.toFixed(1)}g</strong>.`;
     }
+
+ // Abilita scroll con trascinamento del mouse
+const carosello = document.getElementById('carosello');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carosello.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carosello.classList.add('active');
+  startX = e.pageX - carosello.offsetLeft;
+  scrollLeft = carosello.scrollLeft;
+});
+
+carosello.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+
+carosello.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+carosello.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carosello.offsetLeft;
+  const walk = (x - startX) * 1.5; // velocità scroll
+  carosello.scrollLeft = scrollLeft - walk;
+});
   </script>
+  
+ 
+
 </body>
 </html>
