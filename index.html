@@ -36,7 +36,7 @@
     }
     .carosello {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 10px;
       margin: 20px 0;
     }
@@ -46,6 +46,7 @@
       text-align: center;
       cursor: pointer;
       border-radius: 8px;
+      width: 110px;
     }
     .contenitore.selected {
       border-color: #007bff;
@@ -67,76 +68,93 @@
 
   <div><strong>Seleziona contenitore:</strong></div>
   <div class="carosello" id="carosello">
+
     <div class="contenitore" data-peso="0" id="c0">
-      <img src="icone_contenitori/nessun_contenitore.png" alt="nessun contenitore">
+      <img src="icone_contenitori/nessun_contenitore.png" alt="Nessuno">
       <div class="label">Nessuno</div>
     </div>
+
     <div class="contenitore" data-peso="700" id="c1">
-      <img src="icone_contenitori/bollilatte.png" alt="bollilatte">
+      <img src="icone_contenitori/bollilatte.png" alt="10cm - 700g">
       <div class="label">10cm - 700g</div>
     </div>
+
     <div class="contenitore" data-peso="900" id="c2">
-      <img src="icone_contenitori/wok.png" alt="wok">
+      <img src="icone_contenitori/wok.png" alt="28cm - 900g">
       <div class="label">28cm - 900g</div>
     </div>
+
     <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/pentola_22cm.png" alt="pentola 22cm">
+      <img src="icone_contenitori/pentola_22cm.png" alt="22cm - 1500g">
       <div class="label">22cm - 1500g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/pentola_28cm.png" alt="pentola 28cm">
+
+    <div class="contenitore" data-peso="1000" id="c4">
+      <img src="icone_contenitori/pentola_28cm.png" alt="28cm - 1000g">
       <div class="label">28cm - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/pentolone.png" alt="Pentolone">
+
+    <div class="contenitore" data-peso="1000" id="c5">
+      <img src="icone_contenitori/pentolone.png" alt="32cm - 1000g">
       <div class="label">32cm - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/bowl_in_vetro.png" alt="bowl in vetro 20">
+
+    <div class="contenitore" data-peso="1000" id="c6">
+      <img src="icone_contenitori/bowl_in_vetro.png" alt="20cm - 1000g">
       <div class="label">20cm - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/bowl_in_accaio.png" alt="bowl in accaio 36">
+
+    <div class="contenitore" data-peso="1000" id="c7">
+      <img src="icone_contenitori/bowl_in_accaio.png" alt="36cm - 1000g">
       <div class="label">36cm - 1000g</div>
     </div>
-      <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/ciotola_in_legno_28cm.png" alt="ciotola in legno 28">
+
+    <div class="contenitore" data-peso="1000" id="c8">
+      <img src="icone_contenitori/ciotola_in_legno_28cm.png" alt="28cm - 1000g">
       <div class="label">28cm - 1000g</div>
     </div>
-      <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/ciotola_in_legno_20cm.png" alt="ciotola in legno 20">
+
+    <div class="contenitore" data-peso="1000" id="c9">
+      <img src="icone_contenitori/ciotola_in_legno_20cm.png" alt="20cm - 1000g">
       <div class="label">20cm - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/contenitore_in_vetro_1x1.png" alt="contenitore in vetro 1x1">
+
+    <div class="contenitore" data-peso="1000" id="c10">
+      <img src="icone_contenitori/contenitore_in_vetro_1x1.png" alt="1x1 - 1000g">
       <div class="label">1x1 - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/contenitore_in_vetro_2x1.png" alt="contenitore in vetro 2x1">
+
+    <div class="contenitore" data-peso="1000" id="c11">
+      <img src="icone_contenitori/contenitore_in_vetro_2x1.png" alt="2x1 - 1000g">
       <div class="label">2x1 - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/contenitore_in_vetro_1x2.png" alt="contenitore in vetro 1x2">
+
+    <div class="contenitore" data-peso="1000" id="c12">
+      <img src="icone_contenitori/contenitore_in_vetro_1x2.png" alt="1x2 - 1000g">
       <div class="label">1x2 - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/contenitore_in_vetro_05x05.png" alt="contenitore in vetro 0,5x0,5">
+
+    <div class="contenitore" data-peso="1000" id="c13">
+      <img src="icone_contenitori/contenitore_in_vetro_05x05.png" alt="0,5x0,5 - 1000g">
       <div class="label">0,5x0,5 - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/casseruola_24.png" alt="casseruola 24">
+
+    <div class="contenitore" data-peso="1000" id="c14">
+      <img src="icone_contenitori/casseruola_24.png" alt="24cm - 1000g">
       <div class="label">24cm - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/padella_28.png" alt="padella 28">
+
+    <div class="contenitore" data-peso="1000" id="c15">
+      <img src="icone_contenitori/padella_28.png" alt="28cm - 1000g">
       <div class="label">28cm - 1000g</div>
     </div>
-    <div class="contenitore" data-peso="1500" id="c3">
-      <img src="icone_contenitori/padellino.png" alt="padellino 20">
+
+    <div class="contenitore" data-peso="1000" id="c16">
+      <img src="icone_contenitori/padellino.png" alt="20cm - 1000g">
       <div class="label">20cm - 1000g</div>
     </div>
-  </div>
 
+  </div>
 
   <label>Peso totale cucinato (cibo + contenitore) (g):</label>
   <input type="number" id="pesoTotale" />
@@ -155,24 +173,17 @@
     let pesoContenitoreSelezionato = 0;
 
     function selezionaContenitore(element) {
-      // Rimuovi selezione precedente
       document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
-
-      // Aggiungi selezione attuale
       element.classList.add('selected');
-
-      // Salva il peso e in localStorage
       pesoContenitoreSelezionato = parseFloat(element.dataset.peso);
       localStorage.setItem("contenitorePeso", pesoContenitoreSelezionato);
       localStorage.setItem("contenitoreId", element.id);
     }
 
-    // Seleziona contenitore cliccato
     document.querySelectorAll('.contenitore').forEach(c => {
       c.addEventListener('click', () => selezionaContenitore(c));
     });
 
-    // Carica selezione salvata al caricamento
     window.onload = () => {
       const savedId = localStorage.getItem("contenitoreId");
       if (savedId) {
@@ -181,14 +192,12 @@
       }
     };
 
-// Esegui il calcolo se viene premuto "Invio"
-document.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault(); // evita che invii un form o aggiorni la pagina
-    calcola();
-  }
-});
-
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        calcola();
+      }
+    });
 
     function calcola() {
       const pesoTotale = parseFloat(document.getElementById("pesoTotale").value);
