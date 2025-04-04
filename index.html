@@ -13,7 +13,7 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    input, select, button {
+    input, button {
       padding: 10px;
       margin: 10px 0;
       width: 100%;
@@ -34,19 +34,56 @@
       font-weight: bold;
       font-size: 18px;
     }
+    .carosello {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .contenitore {
+      border: 2px solid transparent;
+      padding: 5px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .contenitore.selected {
+      border-color: #007bff;
+      background-color: #e6f0ff;
+    }
+    .contenitore img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+    .label {
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <h1>Calcolatore Cibo</h1>
   <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
 
-  <label for="contenitore">Seleziona contenitore:</label>
-  <select id="contenitore">
-    <option value="0">Nessuna</option>
-    <option value="700">Pentola 22cm - 700g</option>
-    <option value="900">Pentola 28cm - 900g</option>
-    <option value="1500">Pentolone 32cm - 1500g</option>
-  </select>
+  <div><strong>Seleziona contenitore:</strong></div>
+  <div class="carosello" id="carosello">
+    <div class="contenitore" data-peso="0" id="c0">
+      <img src="https://via.placeholder.com/100?text=Nessuno" alt="Nessuno">
+      <div class="label">Nessuno</div>
+    </div>
+    <div class="contenitore" data-peso="700" id="c1">
+      <img src="https://via.placeholder.com/100?text=22cm" alt="Contenitore 22cm">
+      <div class="label">22cm - 700g</div>
+    </div>
+    <div class="contenitore" data-peso="900" id="c2">
+      <img src="https://via.placeholder.com/100?text=28cm" alt="Contenitore 28cm">
+      <div class="label">28cm - 900g</div>
+    </div>
+    <div class="contenitore" data-peso="1500" id="c3">
+      <img src="https://via.placeholder.com/100?text=32cm" alt="Pentolone 32cm">
+      <div class="label">32cm - 1500g</div>
+    </div>
+  </div>
 
   <label>Peso totale cucinato (cibo + contenitore) (g):</label>
   <input type="number" id="pesoTotale" />
@@ -62,21 +99,45 @@
   <div class="result" id="risultato"></div>
 
   <script>
-    // Recupera il contenitore salvato al caricamento
+    let pesoContenitoreSelezionato = 0;
+
+    function selezionaContenitore(element) {
+      // Rimuovi selezione precedente
+      document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
+
+      // Aggiungi selezione attuale
+      element.classList.add('selected');
+
+      // Salva il peso e in localStorage
+      pesoContenitoreSelezionato = parseFloat(element.dataset.peso);
+      localStorage.setItem("contenitorePeso", pesoContenitoreSelezionato);
+      localStorage.setItem("contenitoreId", element.id);
+    }
+
+    // Seleziona contenitore cliccato
+    document.querySelectorAll('.contenitore').forEach(c => {
+      c.addEventListener('click', () => selezionaContenitore(c));
+    });
+
+    // Carica selezione salvata al caricamento
     window.onload = () => {
-      const savedContenitore = localStorage.getItem("contenitore");
-      if (savedContenitore) {
-        document.getElementById("contenitore").value = savedContenitore;
+      const savedId = localStorage.getItem("contenitoreId");
+      if (savedId) {
+        const el = document.getElementById(savedId);
+        if (el) selezionaContenitore(el);
       }
     };
 
-    // Salva ogni volta che cambia la selezione
-    document.getElementById("contenitore").addEventListener("change", (e) => {
-      localStorage.setItem("contenitore", e.target.value);
-    });
+// Esegui il calcolo se viene premuto "Invio"
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // evita che invii un form o aggiorni la pagina
+    calcola();
+  }
+});
+
 
     function calcola() {
-      const pesoContenitore = parseFloat(document.getElementById("contenitore").value);
       const pesoTotale = parseFloat(document.getElementById("pesoTotale").value);
       const crudo = parseFloat(document.getElementById("crudoTotale").value);
       const dose = parseFloat(document.getElementById("doseCruda").value);
@@ -86,7 +147,7 @@
         return;
       }
 
-      const pesoCotto = pesoTotale - pesoContenitore;
+      const pesoCotto = pesoTotale - pesoContenitoreSelezionato;
 
       if (pesoCotto <= 0) {
         document.getElementById("risultato").innerText =
