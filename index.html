@@ -1,45 +1,41 @@
+Così? 
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Calcolatore Cibo</title>
   <style>
-    html, body {
-      overflow-x: hidden;
-    }
-
     @media (max-width: 600px) {
-      body {
-        width: calc(100% - 20px);
-        margin: 1em auto;
-        padding: 0.5em;
-        box-shadow: none;
-        border-radius: 0;
-      }
+  body {
+    margin: 1em;
+    padding: 0.5em;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
 
-      .contenitore {
-        width: 80px;
-      }
+  .contenitore {
+    width: 80px;
+  }
 
-      .contenitore img {
-        width: 70px;
-        height: 70px;
-      }
+  .contenitore img {
+    width: 70px;
+    height: 70px;
+  }
 
-      input, button {
-        font-size: 16px;
-        padding: 12px;
-      }
+  input, button {
+    font-size: 16px;
+    padding: 12px;
+  }
 
-      h1 {
-        font-size: 22px;
-      }
+  h1 {
+    font-size: 22px;
+  }
 
-      .carosello {
-        gap: 6px;
-      }
-    }
+  .carosello {
+    gap: 6px;
+  }
+}
 
     body {
       font-family: Arial, sans-serif;
@@ -72,23 +68,21 @@
       font-size: 18px;
     }
     .carosello {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding-bottom: 10px;
-      -webkit-overflow-scrolling: touch;
-      justify-content: center;
-    }
-    .carosello::-webkit-scrollbar {
-      height: 8px;
-    }
-    .carosello::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+.carosello::-webkit-scrollbar {
+  height: 8px;
+}
+.carosello::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
     .contenitore {
       border: 2px solid transparent;
       padding: 5px;
@@ -112,6 +106,204 @@
   </style>
 </head>
 <body>
-  <!-- CONTENUTO DINAMICO QUI (contenitori, input, ecc.) -->
+  <h1>Calcolatore Cibo</h1>
+  <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
+
+  <div><strong>Seleziona contenitore:</strong></div>
+  <div class="carosello" id="carosello">
+
+    <div class="contenitore" data-peso="0" id="c0">
+      <img src="icone_contenitori/nessun_contenitore.png" alt="Nessuno">
+      <div class="label">Nessuno</div>
+    </div>
+
+    <div class="contenitore" data-peso="284" id="c1">
+      <img src="icone_contenitori/bollilatte.png" alt="10cm - 700g">
+      <div class="label">10cm - 284g</div>
+    </div>
+
+    <div class="contenitore" data-peso="1164" id="c2">
+      <img src="icone_contenitori/wok.png" alt="wok 28cm">
+      <div class="label">28cm - 1164g</div>
+    </div>
+
+    <div class="contenitore" data-peso="790" id="c3">
+      <img src="icone_contenitori/pentola_20.png" alt="pentola 20cm">
+      <div class="label">20cm - 790g</div>
+    </div>
+    
+    <div class="contenitore" data-peso="470" id="c17">
+      <img src="icone_contenitori/pentolino_16.png" alt="pentolino 16">
+      <div class="label">16cm - 470g</div>
+    </div>
+
+    <div class="contenitore" data-peso="1072" id="c4">
+      <img src="icone_contenitori/pentola_24.png" alt="pentola 24cm">
+      <div class="label">24cm - 1072g</div>
+    </div>
+
+    <div class="contenitore" data-peso="1792" id="c5">
+      <img src="icone_contenitori/pentolone.png" alt="pentolone">
+      <div class="label">29cm - 1792g</div>
+    </div>
+
+    <div class="contenitore" data-peso="480" id="c6">
+      <img src="icone_contenitori/bowl_in_vetro.png" alt="bowl in vetro 20cm">
+      <div class="label">20cm - 480g</div>
+    </div>
+
+    <div class="contenitore" data-peso="564" id="c7">
+      <img src="icone_contenitori/bowl_in_accaio.png" alt="bowl in accaio 36cm">
+      <div class="label">36cm - 564g</div>
+    </div>
+
+    <div class="contenitore" data-peso="311" id="c9">
+      <img src="icone_contenitori/ciotola_in_legno_20cm.png" alt="ciotola in legno 20cm">
+      <div class="label">20cm - 311g</div>
+    </div>
+
+    <div class="contenitore" data-peso="469" id="c10">
+      <img src="icone_contenitori/contenitore_in_vetro_1x1.png" alt="contenitore in vetro 1x1">
+      <div class="label">1x1 - 469g</div>
+    </div>
+
+    <div class="contenitore" data-peso="647" id="c11">
+      <img src="icone_contenitori/contenitore_in_vetro_2x1.png" alt="contenitore in vetro 2x1 ">
+      <div class="label">2x1 - 647g</div>
+    </div>
+
+    <div class="contenitore" data-peso="1000" id="c12">
+      <img src="icone_contenitori/contenitore_in_vetro_1x2.png" alt="contenitore in vetro 1x2">
+      <div class="label">1x2 - pesare</div>
+    </div>
+
+    <div class="contenitore" data-peso="170" id="c13">
+      <img src="icone_contenitori/contenitore_in_vetro_05x05.png" alt="contenitore in vetro 0,5x0,5g">
+      <div class="label">0,5x0,5 - 170g</div>
+    </div>
+
+    <div class="contenitore" data-peso="1091" id="c14">
+      <img src="icone_contenitori/casseruola_24.png" alt="casseruola 24cm">
+      <div class="label">24cm - 1091g</div>
+    </div>
+
+    <div class="contenitore" data-peso="1394" id="c15">
+      <img src="icone_contenitori/padella_28.png" alt="padella 28cm">
+      <div class="label">28cm - 1394g</div>
+    </div>
+
+    <div class="contenitore" data-peso="720" id="c16">
+      <img src="icone_contenitori/padellino_20.png" alt="padellino 20cm">
+      <div class="label">20cm - 720g</div>
+    </div>
+
+  </div>
+
+  <label>Peso totale cucinato (cibo + contenitore) (g):</label>
+  <input type="number" id="pesoTotale" />
+
+  <label>Peso cibo crudo (g):</label>
+  <input type="number" id="crudoTotale" />
+
+  <label>Dose desiderata da crudo (g):</label>
+  <input type="number" id="doseCruda" />
+
+  <button onclick="calcola()">Calcola</button>
+
+  <div class="result" id="risultato"></div>
+
+  <script>
+    let pesoContenitoreSelezionato = 0;
+
+    function selezionaContenitore(element) {
+      document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
+      element.classList.add('selected');
+      pesoContenitoreSelezionato = parseFloat(element.dataset.peso);
+      localStorage.setItem("contenitorePeso", pesoContenitoreSelezionato);
+      localStorage.setItem("contenitoreId", element.id);
+    }
+
+    document.querySelectorAll('.contenitore').forEach(c => {
+      c.addEventListener('click', () => selezionaContenitore(c));
+    });
+
+    window.onload = () => {
+      const savedId = localStorage.getItem("contenitoreId");
+      if (savedId) {
+        const el = document.getElementById(savedId);
+        if (el) selezionaContenitore(el);
+      }
+    };
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        calcola();
+      }
+    });
+
+    function calcola() {
+      const pesoTotale = parseFloat(document.getElementById("pesoTotale").value);
+      const crudo = parseFloat(document.getElementById("crudoTotale").value);
+      const dose = parseFloat(document.getElementById("doseCruda").value);
+
+      if (!pesoTotale || !crudo || !dose || pesoTotale <= 0 || crudo <= 0 || dose <= 0) {
+        document.getElementById("risultato").innerText = "Inserisci tutti i valori correttamente.";
+        return;
+      }
+
+      const pesoCotto = pesoTotale - pesoContenitoreSelezionato;
+
+      if (pesoCotto <= 0) {
+        document.getElementById("risultato").innerText =
+          "Errore: il peso del contenitore è maggiore o uguale al peso totale. Controlla i dati inseriti.";
+        return;
+      }
+
+      const risultato = (pesoCotto / crudo) * dose;
+
+      document.getElementById("risultato").innerHTML = `
+  <div style="font-size: 20px; font-weight: bold; color: #007bff; margin-bottom: 5px;">
+    Devi mangiarne ${risultato.toFixed(1)}g
+  </div>
+  <div style="font-size: 16px;font-weight: regular; color: #333;">
+    Peso netto del cibo cotto: ${pesoCotto}g
+  </div>
+`;
+
+    }
+
+ // Abilita scroll con trascinamento del mouse
+const carosello = document.getElementById('carosello');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carosello.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carosello.classList.add('active');
+  startX = e.pageX - carosello.offsetLeft;
+  scrollLeft = carosello.scrollLeft;
+});
+
+carosello.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+
+carosello.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+carosello.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carosello.offsetLeft;
+  const walk = (x - startX) * 1.5; // velocità scroll
+  carosello.scrollLeft = scrollLeft - walk;
+});
+  </script>
+  
+ 
+
 </body>
 </html>
