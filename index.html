@@ -83,6 +83,26 @@ html, body {
     }
     button:hover {
       background-color: #0056b3;
+      .bottoni {
+  display: flex;
+  gap: 10px;
+}
+
+.bottoni button {
+  flex: 1;
+}
+
+button.reset {
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #007bff;
+}
+
+button.reset:hover {
+  background-color: #e6f0ff;
+}
+
+
     }
     .result {
       margin-top: 20px;
@@ -230,7 +250,11 @@ html, body {
   <label>Dose desiderata da crudo (g):</label>
   <input type="number" inputmode="numeric" pattern="[0-9]*" id="doseCruda" />
 
+  <div class="bottoni">
   <button onclick="calcola()">Calcola</button>
+  <button class="reset" onclick="resetta()">Nuovo calcolo</button>
+</div>
+
 
   <div class="result" id="risultato"></div>
 
@@ -294,6 +318,21 @@ html, body {
 `;
 
     }
+function resetta() {
+  document.getElementById("pesoTotale").value = "";
+  document.getElementById("crudoTotale").value = "";
+  document.getElementById("doseCruda").value = "";
+  document.getElementById("risultato").innerHTML = "";
+
+  // Rimuove la selezione dal carosello
+  document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
+  pesoContenitoreSelezionato = 0;
+  localStorage.removeItem("contenitoreId");
+
+  // Scrolla in cima alla pagina
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
  // Abilita scroll con trascinamento del mouse
 const carosello = document.getElementById('carosello');
