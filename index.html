@@ -214,9 +214,11 @@ body.dark .label {
 <body>
   <h1>Calcolatore Cibo</h1>
   <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: -20px; margin-bottom: 10px;">
-  <label style="margin-right: 8px;">🌙 Dark Mode</label>
-  <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" />
+  <button id="toggleTheme" onclick="toggleDarkMode()" style="background: none; border: none; cursor: pointer; font-size: 24px;">
+    <span id="themeIcon">🌞</span>
+  </button>
 </div>
+
   <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
 
   <div><strong>Seleziona contenitore:</strong></div>
@@ -457,17 +459,19 @@ carosello.addEventListener('mousemove', (e) => {
   carosello.scrollLeft = scrollLeft - walk;
 });
 
-    function toggleDarkMode() {
-  const isDark = document.getElementById("darkToggle").checked;
+   function toggleDarkMode() {
+  const isDark = !document.body.classList.contains("dark");
   document.body.classList.toggle("dark", isDark);
   localStorage.setItem("darkMode", isDark);
+  document.getElementById("themeIcon").textContent = isDark ? "🌙" : "🌞";
 }
 
 window.addEventListener("load", () => {
-  const savedMode = localStorage.getItem("darkMode") === "true";
-  document.getElementById("darkToggle").checked = savedMode;
-  document.body.classList.toggle("dark", savedMode);
+  const isDark = localStorage.getItem("darkMode") === "true";
+  document.body.classList.toggle("dark", isDark);
+  document.getElementById("themeIcon").textContent = isDark ? "🌙" : "🌞";
 });
+
 
   </script>
   
