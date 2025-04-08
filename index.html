@@ -207,17 +207,36 @@ body.dark .contenitore.selected {
 body.dark .label {
   color: #eee;
 }
+    #darkToggleBtn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: background-color 0.3s ease;
+}
+
+#darkToggleBtn:hover {
+  background-color: #0056b3;
+}
+
 
 
   </style>
 </head>
 <body>
+  <div id="darkToggleBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+    <span id="darkIcon">🌙</span>
+  </div>
   <h1>Calcolatore Cibo</h1>
-  <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: -20px; margin-bottom: 10px;">
-  <button id="toggleTheme" onclick="toggleDarkMode()" style="background: none; border: none; cursor: pointer; font-size: 24px;">
-    <span id="themeIcon">🌞</span>
-  </button>
-</div>
+
+
 
   <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
 
@@ -459,18 +478,19 @@ carosello.addEventListener('mousemove', (e) => {
   carosello.scrollLeft = scrollLeft - walk;
 });
 
-   function toggleDarkMode() {
-  const isDark = !document.body.classList.contains("dark");
-  document.body.classList.toggle("dark", isDark);
+  function toggleDarkMode() {
+  const isDark = document.body.classList.toggle("dark");
   localStorage.setItem("darkMode", isDark);
-  document.getElementById("themeIcon").textContent = isDark ? "🌙" : "🌞";
+  document.getElementById("darkIcon").textContent = isDark ? "☀️" : "🌙";
 }
 
+
 window.addEventListener("load", () => {
-  const isDark = localStorage.getItem("darkMode") === "true";
-  document.body.classList.toggle("dark", isDark);
-  document.getElementById("themeIcon").textContent = isDark ? "🌙" : "🌞";
+  const savedMode = localStorage.getItem("darkMode") === "true";
+  document.body.classList.toggle("dark", savedMode);
+  document.getElementById("darkIcon").textContent = savedMode ? "☀️" : "🌙";
 });
+
 
 
   </script>
