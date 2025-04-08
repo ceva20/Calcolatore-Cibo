@@ -353,20 +353,6 @@ function resetta() {
   alert("Calcolo salvato!");
 }
 
-    function salvaCalcolo() {
-  const risultato = document.getElementById("risultato").innerText;
-  if (!risultato) {
-    alert("Nessun calcolo da salvare.");
-    return;
-  }
-
-  const data = new Date().toLocaleString();
-  const storico = JSON.parse(localStorage.getItem("calcoliSalvati")) || [];
-  storico.push({ data, risultato });
-  localStorage.setItem("calcoliSalvati", JSON.stringify(storico));
-
-  alert("Calcolo salvato!");
-}
     function mostraStorico() {
   const container = document.getElementById("storico");
   const lista = document.getElementById("listaStorico");
