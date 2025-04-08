@@ -130,11 +130,28 @@ button.reset:hover {
       cursor: pointer;
       border-radius: 8px;
       width: 110px;
+      transition: transform 0.2s ease;
     }
     .contenitore.selected {
       border-color: #007bff;
       background-color: #e6f0ff;
     }
+    @keyframes selezioneContenitore {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+.contenitore.selected {
+  animation: selezioneContenitore 0.3s ease;
+}
+
     .contenitore img {
       width: 100px;
       height: 100px;
