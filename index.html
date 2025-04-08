@@ -139,30 +139,43 @@ color: var(--light-text);
       font-size: 18px;
     }
 
-   .carosello {
+.carosello {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 20px;
   background: linear-gradient(135deg, #008DD5, #005B99);
   border-radius: 16px;
   padding: 16px;
-  gap: 20px;
-  overflow-x: auto;
   margin: 20px 0;
 }
+    
 
-    body.dark .carosello {
-      background-color: var(--light-card);
-    }
 
-   .contenitore {
+ body.dark .carosello {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+
+ .contenitore {
   border: none;
   padding: 5px;
   text-align: center;
   cursor: pointer;
   border-radius: 8px;
-  width: 100px;
   transition: all 0.3s ease;
   background: transparent;
   box-shadow: none;
+  flex: 0 0 auto;
+  width: 100px;
 }
+
 
 
    .contenitore.selected {
