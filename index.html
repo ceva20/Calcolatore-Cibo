@@ -103,16 +103,17 @@ color: var(--light-text);
     }
 
    .bottoni {
-  display: flex; /* <--- questa manca */
-  gap: 20px;
+  display: flex;
   justify-content: center;
+  gap: 10px; /* Spazio tra i pulsanti */
 }
-
 
 .bottoni button {
-  flex: none;
-  min-width: 130px;
+  flex: 1;
+  max-width: 200px; /* Larghezza massima del pulsante */
+  min-width: 100px; /* Larghezza minima del pulsante */
 }
+
 
     button.reset {
   background-color: rgba(255, 255, 255, 0.08);
@@ -163,8 +164,11 @@ color: var(--light-text);
 }
 
 
- .contenitore {
-  border: none;
+.contenitore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: 5px;
   text-align: center;
   cursor: pointer;
@@ -174,6 +178,20 @@ color: var(--light-text);
   box-shadow: none;
   flex: 0 0 auto;
   width: 100px;
+}
+
+.immagine-wrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.immagine-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 
@@ -292,93 +310,126 @@ color: var(--light-text);
  <h2 class="sottotitolo">Seleziona contenitore:</h2>
 
   <div class="carosello" id="carosello">
-
-    <div class="contenitore" data-peso="0" id="c0">
+  <div class="contenitore" data-peso="0" id="c0">
+    <div class="immagine-wrapper">
       <img src="icone_contenitori/nessun_contenitore.png" alt="Nessuno">
-      <div class="label">Nessuno</div>
     </div>
-
-    <div class="contenitore" data-peso="284" id="c1">
-      <img src="icone_contenitori/bollilatte.png" alt="10cm - 700g">
-      <div class="label">10cm - 284g</div>
-    </div>
-    
-    <div class="contenitore" data-peso="470" id="c17">
-      <img src="icone_contenitori/pentolino_16.png" alt="pentolino 16">
-      <div class="label">16cm - 470g</div>
-    </div>
-
-    <div class="contenitore" data-peso="790" id="c3">
-      <img src="icone_contenitori/pentola_20.png" alt="pentola 20cm">
-      <div class="label">20cm - 790g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1072" id="c4">
-      <img src="icone_contenitori/pentola_24.png" alt="pentola 24cm">
-      <div class="label">24cm - 1072g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1792" id="c5">
-      <img src="icone_contenitori/pentolone.png" alt="pentolone">
-      <div class="label">29cm - 1792g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1091" id="c14">
-      <img src="icone_contenitori/casseruola_24.png" alt="casseruola 24cm">
-      <div class="label">24cm - 1091g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1394" id="c15">
-      <img src="icone_contenitori/padella_28.png" alt="padella 28cm">
-      <div class="label">28cm - 1394g</div>
-    </div>
-
-    <div class="contenitore" data-peso="720" id="c16">
-      <img src="icone_contenitori/padellino_20.png" alt="padellino 20cm">
-      <div class="label">20cm - 720g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1164" id="c2">
-      <img src="icone_contenitori/wok.png" alt="wok 28cm">
-      <div class="label">28cm - 1164g</div>
-    </div>
-
- <div class="contenitore" data-peso="480" id="c6">
-      <img src="icone_contenitori/bowl_in_vetro.png" alt="bowl in vetro 20cm">
-      <div class="label">20cm - 480g</div>
-    </div>
-
-    <div class="contenitore" data-peso="564" id="c7">
-      <img src="icone_contenitori/bowl_in_accaio.png" alt="bowl in accaio 36cm">
-      <div class="label">36cm - 564g</div>
-    </div>
-
-    <div class="contenitore" data-peso="311" id="c9">
-      <img src="icone_contenitori/ciotola_in_legno_20cm.png" alt="ciotola in legno 20cm">
-      <div class="label">20cm - 311g</div>
-    </div>
-
-    <div class="contenitore" data-peso="469" id="c10">
-      <img src="icone_contenitori/contenitore_in_vetro_1x1.png" alt="contenitore in vetro 1x1">
-      <div class="label">1x1 - 469g</div>
-    </div>
-
-    <div class="contenitore" data-peso="647" id="c11">
-      <img src="icone_contenitori/contenitore_in_vetro_2x1.png" alt="contenitore in vetro 2x1 ">
-      <div class="label">2x1 - 647g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1000" id="c12">
-      <img src="icone_contenitori/contenitore_in_vetro_1x2.png" alt="contenitore in vetro 1x2">
-      <div class="label">1x2 - pesare</div>
-    </div>
-
-    <div class="contenitore" data-peso="170" id="c13">
-      <img src="icone_contenitori/contenitore_in_vetro_05x05.png" alt="contenitore in vetro 0,5x0,5g">
-      <div class="label">0,5x0,5 - 170g</div>
-    </div>
-
+    <div class="label">Nessuno</div>
   </div>
+
+  <div class="contenitore" data-peso="284" id="c1">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/bollilatte.png" alt="10cm - 284g">
+    </div>
+    <div class="label">10cm - 284g</div>
+  </div>
+
+  <div class="contenitore" data-peso="470" id="c17">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/pentolino_16.png" alt="Pentolino 16cm">
+    </div>
+    <div class="label">16cm - 470g</div>
+  </div>
+
+  <div class="contenitore" data-peso="790" id="c3">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/pentola_20.png" alt="Pentola 20cm">
+    </div>
+    <div class="label">20cm - 790g</div>
+  </div>
+
+  <div class="contenitore" data-peso="1072" id="c4">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/pentola_24.png" alt="Pentola 24cm">
+    </div>
+    <div class="label">24cm - 1072g</div>
+  </div>
+
+  <div class="contenitore" data-peso="1792" id="c5">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/pentolone.png" alt="Pentolone 29cm">
+    </div>
+    <div class="label">29cm - 1792g</div>
+  </div>
+
+  <div class="contenitore" data-peso="1091" id="c14">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/casseruola_24.png" alt="Casseruola 24cm">
+    </div>
+    <div class="label">24cm - 1091g</div>
+  </div>
+
+  <div class="contenitore" data-peso="1394" id="c15">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/padella_28.png" alt="Padella 28cm">
+    </div>
+    <div class="label">28cm - 1394g</div>
+  </div>
+
+  <div class="contenitore" data-peso="720" id="c16">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/padellino_20.png" alt="Padellino 20cm">
+    </div>
+    <div class="label">20cm - 720g</div>
+  </div>
+
+  <div class="contenitore" data-peso="1164" id="c2">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/wok.png" alt="Wok 28cm">
+    </div>
+    <div class="label">28cm - 1164g</div>
+  </div>
+
+  <div class="contenitore" data-peso="480" id="c6">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/bowl_in_vetro.png" alt="Bowl vetro 20cm">
+    </div>
+    <div class="label">20cm - 480g</div>
+  </div>
+
+  <div class="contenitore" data-peso="564" id="c7">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/bowl_in_accaio.png" alt="Bowl acciaio 36cm">
+    </div>
+    <div class="label">36cm - 564g</div>
+  </div>
+
+  <div class="contenitore" data-peso="311" id="c9">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/ciotola_in_legno_20cm.png" alt="Ciotola legno 20cm">
+    </div>
+    <div class="label">20cm - 311g</div>
+  </div>
+
+  <div class="contenitore" data-peso="469" id="c10">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/contenitore_in_vetro_1x1.png" alt="Vetro 1x1">
+    </div>
+    <div class="label">1x1 - 469g</div>
+  </div>
+
+  <div class="contenitore" data-peso="647" id="c11">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/contenitore_in_vetro_2x1.png" alt="Vetro 2x1">
+    </div>
+    <div class="label">2x1 - 647g</div>
+  </div>
+
+  <div class="contenitore" data-peso="1000" id="c12">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/contenitore_in_vetro_1x2.png" alt="Vetro 1x2">
+    </div>
+    <div class="label">1x2 - pesare</div>
+  </div>
+
+  <div class="contenitore" data-peso="170" id="c13">
+    <div class="immagine-wrapper">
+      <img src="icone_contenitori/contenitore_in_vetro_05x05.png" alt="Vetro 0.5x0.5">
+    </div>
+    <div class="label">0,5x0,5 - 170g</div>
+  </div>
+</div>
+
 
   <div class="inputs-wrapper">
   <label>Peso totale cucinato (cibo + contenitore) (g):</label>
