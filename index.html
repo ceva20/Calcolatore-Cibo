@@ -55,6 +55,9 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       transition: background 0.3s, color 0.3s, border 0.3s;
+      background: white;
+color: var(--light-text);
+
     }
 
     body.dark input {
@@ -87,11 +90,22 @@
       background-color: transparent;
       color: inherit;
       border: 2px solid var(--accent);
+      box-shadow: 0 0 4px rgba(0, 141, 213, 0.2);
+
     }
 
     button.reset:hover {
       background-color: rgba(0, 141, 213, 0.1);
     }
+    body.dark button.reset:hover {
+  background-color: rgba(255, 173, 5, 0.15);
+  border-color: var(--dark-accent);
+}
+    body.dark button.reset {
+  color: var(--dark-accent);
+}
+
+
 
     .result {
       margin-top: 20px;
@@ -122,12 +136,15 @@
       width: 110px;
       transition: transform 0.2s ease, box-shadow 0.3s;
       background: white;
+      box-shadow: 0 0 10px var(--accent);
+
     }
 
     .contenitore.selected {
       border-color: var(--accent);
       background-color: #e6f0ff;
       box-shadow: 0 0 10px var(--accent);
+      
     }
 
     .contenitore img {
@@ -363,10 +380,12 @@ setTimeout(() => {
 
       document.getElementById("risultato").innerHTML = `
   <div class="fade-in">
-    <div style="font-size: 20px; font-weight: bold; color: #007bff; margin-bottom: 5px;">
+    <div style="font-size: 20px; font-weight: bold; color: var(--accent); margin-bottom: 5px;">
+
       Devi mangiarne ${risultato.toFixed(1)}g
     </div>
-    <div style="font-size: 16px;font-weight: 400; color: #333;">
+   <div style="font-size: 16px;font-weight: 400; color: inherit;">
+
       Peso netto del cibo cotto: ${pesoCotto}g
     </div>
   </div>
