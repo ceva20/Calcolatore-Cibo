@@ -222,13 +222,13 @@ html, body {
   </div>
 
   <label>Peso totale cucinato (cibo + contenitore) (g):</label>
-  <input type="number" id="pesoTotale" />
+  <input type="number" inputmode="numeric" pattern="[0-9]*" id="pesoTotale" />
 
   <label>Peso cibo crudo (g):</label>
-  <input type="number" id="crudoTotale" />
+  <input type="number" inputmode="numeric" pattern="[0-9]*" id="crudoTotale" />
 
   <label>Dose desiderata da crudo (g):</label>
-  <input type="number" id="doseCruda" />
+  <input type="number" inputmode="numeric" pattern="[0-9]*" id="doseCruda" />
 
   <button onclick="calcola()">Calcola</button>
 
