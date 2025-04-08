@@ -155,10 +155,13 @@ button.reset:hover {
 }
 
     .contenitore img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-    }
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  cursor: pointer;
+  user-select: none;
+}
+
     .label {
       font-size: 14px;
     }
@@ -286,6 +289,8 @@ button.reset:hover {
 
 
   <div class="result" id="risultato"></div>
+<div id="notifica" style="display:none; color: green; font-weight: bold; margin-top: 10px;"></div>
+
 
   <script>
     let pesoContenitoreSelezionato = 0;
@@ -322,10 +327,31 @@ button.reset:hover {
       const crudo = parseFloat(document.getElementById("crudoTotale").value);
       const dose = parseFloat(document.getElementById("doseCruda").value);
 
-      if (!pesoTotale || !crudo || !dose || pesoTotale <= 0 || crudo <= 0 || dose <= 0) {
-        document.getElementById("risultato").innerText = "Inserisci tutti i valori correttamente.";
-        return;
-      }
+      let errore = false;
+
+["pesoTotale", "crudoTotale", "doseCruda"].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el.value || parseFloat(el.value) <= 0) {
+    el.style.borderColor = "red";
+    errore = true;
+  } else {
+    el.style.borderColor = "";
+  }
+});
+
+if (errore) {
+  document.getElementById("risultato").innerText = "Inserisci tutti i valori correttamente.";
+  return;
+}
+
+const notifica = document.getElementById("notifica");
+notifica.innerText = "Calcolo effettuato!";
+notifica.style.display = "block";
+setTimeout(() => {
+  notifica.style.display = "none";
+}, 2000);
+
+
 
       const pesoCotto = pesoTotale - pesoContenitoreSelezionato;
 
