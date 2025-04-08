@@ -81,15 +81,13 @@ html, body {
       cursor: pointer;
       border-radius: 5px;
     }
- button:hover {
-  background-color: #0056b3;
-}
-
-.bottoni {
+    button:hover {
+      background-color: #0056b3;
+    }
+   .bottoni {
   display: flex;
   gap: 10px;
 }
-
 
 .bottoni button {
   flex: 1;
@@ -250,21 +248,13 @@ button.reset:hover {
   <label>Dose desiderata da crudo (g):</label>
   <input type="number" inputmode="numeric" pattern="[0-9]*" id="doseCruda" />
 
-<div class="bottoni">
+  <div class="bottoni">
   <button onclick="calcola()">Calcola</button>
   <button class="reset" onclick="resetta()">Nuovo calcolo</button>
-  <button class="reset" onclick="salvaCalcolo()">Salva calcolo</button>
-  <button class="reset" onclick="mostraStorico()">Lista calcoli salvati</button>
 </div>
 
 
-
-
- <div id="storico" style="display:none; margin-top: 20px;">
-  <h3>Calcoli salvati</h3>
-  <ul id="listaStorico" style="padding-left: 1.2em;"></ul>
-</div>
-
+  <div class="result" id="risultato"></div>
 
   <script>
     let pesoContenitoreSelezionato = 0;
@@ -340,44 +330,6 @@ function resetta() {
   // Scrolla in cima alla pagina
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-    function salvaCalcolo() {
-  const risultato = document.getElementById("risultato").innerText;
-  if (!risultato) {
-    alert("Nessun calcolo da salvare.");
-    return;
-  }
-
-  const data = new Date().toLocaleString();
-  const storico = JSON.parse(localStorage.getItem("calcoliSalvati")) || [];
-  storico.push({ data, risultato });
-  localStorage.setItem("calcoliSalvati", JSON.stringify(storico));
-
-  alert("Calcolo salvato!");
-}
-
-    function mostraStorico() {
-  const container = document.getElementById("storico");
-  const lista = document.getElementById("listaStorico");
-  const storico = JSON.parse(localStorage.getItem("calcoliSalvati")) || [];
-
-  lista.innerHTML = "";
-
-  if (storico.length === 0) {
-    lista.innerHTML = "<li>Nessun calcolo salvato.</li>";
-  } else {
-    storico.forEach(entry => {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${entry.data}</strong>: ${entry.risultato}`;
-      lista.appendChild(li);
-    });
-  }
-
-  container.style.display = "block";
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-
-
 
 
  // Abilita scroll con trascinamento del mouse
