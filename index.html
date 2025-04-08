@@ -4,373 +4,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Calcolatore Cibo</title>
-
   <link rel="icon" href="favicon.png" type="image/png">
 
   <style>
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-
-   @media (max-width: 600px) {
-  body {
-    margin: 0 auto;
-    padding: 0.5em;
-    max-width: calc(100% - 20px);
-    box-shadow: none;
-    border-radius: 0;
-  }
-
-
-
-
-  .contenitore {
-    width: 80px;
-  }
-
-  .contenitore img {
-    width: 70px;
-    height: 70px;
-  }
-
-  input, button {
-  box-sizing: border-box;
-  padding: 10px;
-  margin: 10px 0;
-  width: 100%;
-  font-size: 16px;
-}
-
-
-  h1 {
-    font-size: 22px;
-  }
-
-  .carosello {
-    gap: 6px;
-  }
-}
-
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
+      font-family: 'Arial', sans-serif;
       max-width: 600px;
       margin: 2em auto;
       padding: 1em;
       background: #f7f7f7;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
     }
-    input, button {
+
+    body.dark {
+      background: #181c1f;
+      color: #f4f4f4;
+      box-shadow: none;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      margin-bottom: 1em;
+    }
+
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+
+    input {
       padding: 10px;
-      margin: 10px 0;
       width: 100%;
       font-size: 16px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
-    button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
+
+    body.dark input {
+      background: #2c3338;
+      border: 1px solid #555;
+      color: #fff;
     }
-    button:hover {
-      background-color: #0056b3;
+
+    .carosello {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      gap: 12px;
+      margin: 1em 0;
+      background: #f0f0f0;
+      border-radius: 10px;
     }
-   .bottoni {
-  display: flex;
-  gap: 10px;
-}
 
-.bottoni button {
-  flex: 1;
-}
-
-button.reset {
-  background-color: transparent;
-  color: #000;
-  border: 2px solid #007bff;
-}
-
-button.reset:hover {
-  background-color: #e6f0ff;
-}
-    .result {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 18px;
+    body.dark .carosello {
+      background: #ececec;
     }
-   .carosello {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-  overflow-x: auto;
-  overflow-y: visible; /* 👈 AGGIUNTO: evita il taglio verticale */
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch;
-}
-    
-body.dark .carosello {
-  background-color: #f2f2f2;  /* sfondo chiaro */
-  border-radius: 8px;
-  padding: 10px;
-}
 
-
-.carosello::-webkit-scrollbar {
-  height: 8px;
-}
-.carosello::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
-}
     .contenitore {
-      border: 2px solid transparent;
-      padding: 5px;
+      flex: 0 0 auto;
+      width: 100px;
       text-align: center;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 5px;
       cursor: pointer;
-      border-radius: 8px;
-      width: 110px;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .contenitore.selected {
-      border-color: #007bff;
-      background-color: #e6f0ff;
-    }
-    @keyframes selezioneContenitore {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.08);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-.contenitore.selected {
-  animation: selezioneContenitore 0.3s ease;
-}
 
     .contenitore img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  cursor: pointer;
-  user-select: none;
-}
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      user-select: none;
+    }
+
+    .contenitore.selected {
+      border-color: #007bff;
+      background: #e6f0ff;
+      animation: selezioneContenitore 0.3s ease;
+    }
+
+    body.dark .contenitore.selected {
+      background: #263545;
+      border-color: #4a90e2;
+      box-shadow: 0 0 8px #4a90e2;
+    }
+
+    @keyframes selezioneContenitore {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
 
     .label {
       font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .bottoni {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      flex: 1;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button.reset {
+      background: transparent;
+      border: 2px solid #007bff;
+      color: #007bff;
+    }
+
+    body.dark button.reset {
+      border-color: #4a90e2;
+      color: #4a90e2;
+    }
+
+    button:not(.reset) {
+      background: #007bff;
+      color: white;
+    }
+
+    body.dark button:not(.reset) {
+      background: #007bff;
+      color: white;
+    }
+
+    .result {
+      margin-top: 1em;
+      font-weight: bold;
+      font-size: 18px;
     }
 
     .fade-in {
-  opacity: 0;
-  animation: fadeIn 0.6s ease-in-out forwards;
-}
+      opacity: 0;
+      animation: fadeIn 0.6s ease-in-out forwards;
+    }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-    body.dark {
-  background: #1e1e1e;
-  color: #eee;
-}
-
-body.dark input {
-  background-color: #333;
-  color: #eee;
-  border: 1px solid #555;
-}
-
-body.dark button:not(.reset) {
-  background-color: #007bff;  /* resta blu */
-  color: white;
-  border: none;
-}
-
-body.dark button:not(.reset):hover {
-  background-color: #0056b3;
-}
-
-
-body.dark button.reset {
-  border-color: #4a90e2;
-  background-color: transparent;
-  color: #eee;
-}
-
-body.dark button:hover {
-  background-color: #4a90e2;
-}
-
-body.dark .contenitore.selected {
-  background-color: #2c3e50;
-  border-color: #4a90e2;
-  box-shadow: 0 0 8px #4a90e2;  /* effetto glow */
-}
-
-
-body.dark .label {
-  color: #eee;
-}
-    body.dark #risultato {
-  color: #eee;
-}
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
 
     #darkToggleBtn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 18px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 999;
-  transition: background-color 0.3s ease;
-}
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: #007bff;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
 
-#darkToggleBtn:hover {
-  background-color: #0056b3;
-}
-
-
-
+    #darkToggleBtn:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
   <div id="darkToggleBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode">
     <span id="darkIcon">🌙</span>
   </div>
+
   <h1>Calcolatore Cibo</h1>
-
-
-
   <p>Calcola quanti grammi di cibo cotto devi mangiare</p>
 
   <div><strong>Seleziona contenitore:</strong></div>
   <div class="carosello" id="carosello">
-
-    <div class="contenitore" data-peso="0" id="c0">
-      <img src="icone_contenitori/nessun_contenitore.png" alt="Nessuno">
-      <div class="label">Nessuno</div>
-    </div>
-
+    <!-- Esempio -->
     <div class="contenitore" data-peso="284" id="c1">
-      <img src="icone_contenitori/bollilatte.png" alt="10cm - 700g">
-      <div class="label">10cm - 284g</div>
+      <img src="icone_contenitori/bollilatte.png" alt="bollilatte">
+      <div class="label">284g</div>
     </div>
-    
-    <div class="contenitore" data-peso="470" id="c17">
-      <img src="icone_contenitori/pentolino_16.png" alt="pentolino 16">
-      <div class="label">16cm - 470g</div>
-    </div>
-
-    <div class="contenitore" data-peso="790" id="c3">
-      <img src="icone_contenitori/pentola_20.png" alt="pentola 20cm">
-      <div class="label">20cm - 790g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1072" id="c4">
-      <img src="icone_contenitori/pentola_24.png" alt="pentola 24cm">
-      <div class="label">24cm - 1072g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1792" id="c5">
-      <img src="icone_contenitori/pentolone.png" alt="pentolone">
-      <div class="label">29cm - 1792g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1091" id="c14">
-      <img src="icone_contenitori/casseruola_24.png" alt="casseruola 24cm">
-      <div class="label">24cm - 1091g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1394" id="c15">
-      <img src="icone_contenitori/padella_28.png" alt="padella 28cm">
-      <div class="label">28cm - 1394g</div>
-    </div>
-
-    <div class="contenitore" data-peso="720" id="c16">
-      <img src="icone_contenitori/padellino_20.png" alt="padellino 20cm">
-      <div class="label">20cm - 720g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1164" id="c2">
-      <img src="icone_contenitori/wok.png" alt="wok 28cm">
-      <div class="label">28cm - 1164g</div>
-    </div>
-
- <div class="contenitore" data-peso="480" id="c6">
-      <img src="icone_contenitori/bowl_in_vetro.png" alt="bowl in vetro 20cm">
-      <div class="label">20cm - 480g</div>
-    </div>
-
-    <div class="contenitore" data-peso="564" id="c7">
-      <img src="icone_contenitori/bowl_in_accaio.png" alt="bowl in accaio 36cm">
-      <div class="label">36cm - 564g</div>
-    </div>
-
-    <div class="contenitore" data-peso="311" id="c9">
-      <img src="icone_contenitori/ciotola_in_legno_20cm.png" alt="ciotola in legno 20cm">
-      <div class="label">20cm - 311g</div>
-    </div>
-
-    <div class="contenitore" data-peso="469" id="c10">
-      <img src="icone_contenitori/contenitore_in_vetro_1x1.png" alt="contenitore in vetro 1x1">
-      <div class="label">1x1 - 469g</div>
-    </div>
-
-    <div class="contenitore" data-peso="647" id="c11">
-      <img src="icone_contenitori/contenitore_in_vetro_2x1.png" alt="contenitore in vetro 2x1 ">
-      <div class="label">2x1 - 647g</div>
-    </div>
-
-    <div class="contenitore" data-peso="1000" id="c12">
-      <img src="icone_contenitori/contenitore_in_vetro_1x2.png" alt="contenitore in vetro 1x2">
-      <div class="label">1x2 - pesare</div>
-    </div>
-
-    <div class="contenitore" data-peso="170" id="c13">
-      <img src="icone_contenitori/contenitore_in_vetro_05x05.png" alt="contenitore in vetro 0,5x0,5g">
-      <div class="label">0,5x0,5 - 170g</div>
-    </div>
-
+    <!-- Altri contenitori da inserire qui -->
   </div>
 
-  <label>Peso totale cucinato (cibo + contenitore) (g):</label>
-  <input type="number" inputmode="numeric" pattern="[0-9]*" id="pesoTotale" />
+  <label for="pesoTotale">Peso totale cucinato (cibo + contenitore) (g):</label>
+  <input type="number" id="pesoTotale">
 
-  <label>Peso cibo crudo (g):</label>
-  <input type="number" inputmode="numeric" pattern="[0-9]*" id="crudoTotale" />
+  <label for="crudoTotale">Peso cibo crudo (g):</label>
+  <input type="number" id="crudoTotale">
 
-  <label>Dose desiderata da crudo (g):</label>
-  <input type="number" inputmode="numeric" pattern="[0-9]*" id="doseCruda" />
+  <label for="doseCruda">Dose desiderata da crudo (g):</label>
+  <input type="number" id="doseCruda">
 
   <div class="bottoni">
-  <button onclick="calcola()">Calcola</button>
-  <button class="reset" onclick="resetta()">Nuovo calcolo</button>
-</div>
-
+    <button onclick="calcola()">Calcola</button>
+    <button class="reset" onclick="resetta()">Nuovo calcolo</button>
+  </div>
 
   <div class="result" id="risultato"></div>
-<div id="notifica" style="display:none; color: green; font-weight: bold; margin-top: 10px;"></div>
-
+  <div id="notifica" style="display:none; color: green; font-weight: bold; margin-top: 10px;"></div>
 
   <script>
     let pesoContenitoreSelezionato = 0;
@@ -379,7 +228,6 @@ body.dark .label {
       document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
       element.classList.add('selected');
       pesoContenitoreSelezionato = parseFloat(element.dataset.peso);
-      localStorage.setItem("contenitorePeso", pesoContenitoreSelezionato);
       localStorage.setItem("contenitoreId", element.id);
     }
 
@@ -393,14 +241,11 @@ body.dark .label {
         const el = document.getElementById(savedId);
         if (el) selezionaContenitore(el);
       }
-    };
 
-    document.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        calcola();
-      }
-    });
+      const savedMode = localStorage.getItem("darkMode") === "true";
+      document.body.classList.toggle("dark", savedMode);
+      document.getElementById("darkIcon").textContent = savedMode ? "☀️" : "🌙";
+    };
 
     function calcola() {
       const pesoTotale = parseFloat(document.getElementById("pesoTotale").value);
@@ -408,117 +253,61 @@ body.dark .label {
       const dose = parseFloat(document.getElementById("doseCruda").value);
 
       let errore = false;
+      ["pesoTotale", "crudoTotale", "doseCruda"].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value || parseFloat(el.value) <= 0) {
+          el.style.borderColor = "red";
+          errore = true;
+        } else {
+          el.style.borderColor = "";
+        }
+      });
 
-["pesoTotale", "crudoTotale", "doseCruda"].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el.value || parseFloat(el.value) <= 0) {
-    el.style.borderColor = "red";
-    errore = true;
-  } else {
-    el.style.borderColor = "";
-  }
-});
-
-if (errore) {
-  document.getElementById("risultato").innerText = "Inserisci tutti i valori correttamente.";
-  return;
-}
-
-const notifica = document.getElementById("notifica");
-notifica.innerText = "Calcolo effettuato!";
-notifica.style.display = "block";
-setTimeout(() => {
-  notifica.style.display = "none";
-}, 2000);
-
-
+      if (errore) {
+        document.getElementById("risultato").innerText = "Inserisci tutti i valori correttamente.";
+        return;
+      }
 
       const pesoCotto = pesoTotale - pesoContenitoreSelezionato;
-
       if (pesoCotto <= 0) {
-        document.getElementById("risultato").innerText =
-          "Errore: il peso del contenitore è maggiore o uguale al peso totale. Controlla i dati inseriti.";
+        document.getElementById("risultato").innerText = "Errore: il peso del contenitore è maggiore o uguale al peso totale.";
         return;
       }
 
       const risultato = (pesoCotto / crudo) * dose;
-
       document.getElementById("risultato").innerHTML = `
-  <div class="fade-in">
-    <div style="font-size: 20px; font-weight: bold; color: #007bff; margin-bottom: 5px;">
-      Devi mangiarne ${risultato.toFixed(1)}g
-    </div>
-    <div style="font-size: 16px;font-weight: 400; color: #333;">
-      Peso netto del cibo cotto: ${pesoCotto}g
-    </div>
-  </div>
-`;
+        <div class="fade-in">
+          <div style="font-size: 20px; font-weight: bold; color: #007bff; margin-bottom: 5px;">
+            Devi mangiarne ${risultato.toFixed(1)}g
+          </div>
+          <div style="font-size: 16px; font-weight: 400; color: inherit;">
+            Peso netto del cibo cotto: ${pesoCotto}g
+          </div>
+        </div>
+      `;
 
-
+      const notifica = document.getElementById("notifica");
+      notifica.innerText = "Calcolo effettuato!";
+      notifica.style.display = "block";
+      setTimeout(() => { notifica.style.display = "none"; }, 2000);
     }
-function resetta() {
-  document.getElementById("pesoTotale").value = "";
-  document.getElementById("crudoTotale").value = "";
-  document.getElementById("doseCruda").value = "";
-  document.getElementById("risultato").innerHTML = "";
 
-  // Rimuove la selezione dal carosello
-  document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
-  pesoContenitoreSelezionato = 0;
-  localStorage.removeItem("contenitoreId");
+    function resetta() {
+      document.getElementById("pesoTotale").value = "";
+      document.getElementById("crudoTotale").value = "";
+      document.getElementById("doseCruda").value = "";
+      document.getElementById("risultato").innerHTML = "";
+      document.querySelectorAll('.contenitore').forEach(c => c.classList.remove('selected'));
+      pesoContenitoreSelezionato = 0;
+      localStorage.removeItem("contenitoreId");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-  // Scrolla in cima alla pagina
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-
- // Abilita scroll con trascinamento del mouse
-const carosello = document.getElementById('carosello');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-carosello.addEventListener('mousedown', (e) => {
-  isDown = true;
-  carosello.classList.add('active');
-  startX = e.pageX - carosello.offsetLeft;
-  scrollLeft = carosello.scrollLeft;
-});
-
-carosello.addEventListener('mouseleave', () => {
-  isDown = false;
-});
-
-carosello.addEventListener('mouseup', () => {
-  isDown = false;
-});
-
-carosello.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - carosello.offsetLeft;
-  const walk = (x - startX) * 1.5; // velocità scroll
-  carosello.scrollLeft = scrollLeft - walk;
-});
-
-  function toggleDarkMode() {
-  const isDark = document.body.classList.toggle("dark");
-  localStorage.setItem("darkMode", isDark);
-  document.getElementById("darkIcon").textContent = isDark ? "☀️" : "🌙";
-}
-
-
-window.addEventListener("load", () => {
-  const savedMode = localStorage.getItem("darkMode") === "true";
-  document.body.classList.toggle("dark", savedMode);
-  document.getElementById("darkIcon").textContent = savedMode ? "☀️" : "🌙";
-});
-
-
-
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle("dark");
+      localStorage.setItem("darkMode", isDark);
+      document.getElementById("darkIcon").textContent = isDark ? "☀️" : "🌙";
+    }
   </script>
-  
- 
-
 </body>
 </html>
