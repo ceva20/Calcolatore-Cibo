@@ -107,15 +107,17 @@ button.reset:hover {
       font-weight: bold;
       font-size: 18px;
     }
-    .carosello {
+   .carosello {
   display: flex;
   gap: 10px;
   margin: 20px 0;
   overflow-x: auto;
+  overflow-y: visible; /* 👈 AGGIUNTO: evita il taglio verticale */
   scroll-behavior: smooth;
   padding-bottom: 10px;
   -webkit-overflow-scrolling: touch;
 }
+
 .carosello::-webkit-scrollbar {
   height: 8px;
 }
