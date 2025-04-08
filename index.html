@@ -36,10 +36,15 @@
 p {
   font-size: 16px;
   font-weight: 300;
-  color: #ffffffb3;
   text-align: center;
   margin-bottom: 2em;
+  color: #ffffffb3;
 }
+
+body:not(.dark) p {
+  color: #333333;
+}
+
 
 
     html, body {
@@ -120,10 +125,19 @@ color: var(--light-text);
   border: none;
   color: #fff;
 }
+    body:not(.dark) button.reset {
+  color: #FFAD05;
+  background-color: rgba(255, 173, 5, 0.08);
+}
+
 
     button.reset:hover {
       background-color: rgba(0, 141, 213, 0.1);
     }
+    body:not(.dark) button.reset:hover {
+  background-color: rgba(255, 173, 5, 0.15);
+}
+
     body.dark button.reset:hover {
   background-color: rgba(255, 173, 5, 0.15);
   border-color: var(--dark-accent);
@@ -293,6 +307,37 @@ color: var(--light-text);
   margin-top: 20px;
   font-size: 18px;
 }
+    .carosello::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carosello::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.carosello::-webkit-scrollbar-thumb {
+  background: #00f0ff;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.carosello::-webkit-scrollbar-thumb:hover {
+  background: #00c3cc;
+}
+    body:not(.dark) .carosello::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark) .carosello::-webkit-scrollbar-thumb {
+  background: #008DD5;
+}
+
+body:not(.dark) .carosello::-webkit-scrollbar-thumb:hover {
+  background: #006bb0;
+}
+
+
 
 
   </style>
