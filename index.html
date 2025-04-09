@@ -53,31 +53,23 @@ body:not(.dark) p {
 
 
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      transition: background-color 0.5s ease, color 0.5s ease;
+   html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
+
 
 body {
-  max-width: 600px;
-  margin: 2em auto;
-  padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
   background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
-  color: var(--light-text);
 }
-
 body.dark {
-  max-width: 600px;
-  margin: 2em auto;
-  padding: 1em;
   background: var(--dark-bg);
   color: var(--dark-text);
-  border-radius: 10px;
-  box-shadow: 0 0 25px 5px rgba(0, 141, 213, 0.3); /* GLOW blu */
 }
 
 
@@ -394,6 +386,22 @@ body:not(.dark) .inputs-wrapper {
     padding: 1.5em;
   }
 }
+    .wrapper {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
+  color: var(--light-text);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.dark .wrapper {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  box-shadow: 0 0 25px 5px rgba(0, 141, 213, 0.3); /* Glow azzurro */
+}
+
 
 
 
@@ -403,6 +411,7 @@ body:not(.dark) .inputs-wrapper {
   </style>
 </head>
 <body>
+  <div class="wrapper">
   <div id="darkToggleBtn" role="button" tabindex="0" onclick="toggleDarkMode()" title="Attiva/disattiva modalità scura" aria-label="Attiva/disattiva modalità scura">
 
 
