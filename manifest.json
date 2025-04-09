@@ -1,0 +1,21 @@
+{
+  "name": "Calcolatore Cibo",
+  "short_name": "Cibo",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFF8EB",
+  "theme_color": "#008DD5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icona192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icona512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
