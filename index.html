@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title>Calcolatore Cibo</title>
   <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
 
   <style>
     :root {
@@ -29,17 +31,21 @@
   font-size: 32px;
   font-weight: 800;
   color: #FFAD05;
-  margin-bottom: 0.3em;
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-align: center;
 }
+    
 
 p {
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 17px;
+  font-weight: 400;
   text-align: center;
   margin-bottom: 2em;
   color: #ffffffb3;
+  line-height: 1.5;
 }
+
 
 body:not(.dark) p {
   color: #333333;
@@ -50,18 +56,18 @@ body:not(.dark) p {
     html, body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      transition: background 0.3s, color 0.3s;
-    }
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.5s ease, color 0.5s ease;
+}
 
     body {
       max-width: 600px;
       margin: 2em auto;
       padding: 1em;
-      background: var(--light-bg);
+        background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
       color: var(--light-text);
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 
     body.dark {
@@ -74,6 +80,7 @@ body:not(.dark) p {
       margin: 10px 0;
       width: 100%;
       font-size: 16px;
+      font-family: 'Inter', sans-serif;
       border: 1px solid #ccc;
       border-radius: 5px;
       transition: background 0.3s, color 0.3s, border 0.3s;
@@ -121,10 +128,17 @@ color: var(--light-text);
 
 
     button.reset {
-  background-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 173, 5, 0.15);
+  color: #FFAD05;
+  font-weight: bold;
   border: none;
-  color: #fff;
+  transition: background 0.3s;
 }
+
+button.reset:hover {
+  background: rgba(255, 173, 5, 0.25);
+}
+
     body:not(.dark) button.reset {
   color: #FFAD05;
   background-color: rgba(255, 173, 5, 0.08);
@@ -164,7 +178,7 @@ color: var(--light-text);
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   gap: 20px;
-  background: linear-gradient(135deg, #008DD5, #005B99);
+  background: linear-gradient(135deg, #A8DAFF, #66B2FF);
   border-radius: 16px;
   padding: 16px;
   margin: 20px 0;
@@ -173,7 +187,7 @@ color: var(--light-text);
 
 
  body.dark .carosello {
-  background-color: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, #D5F3FF, #A8DAFF);
   backdrop-filter: blur(8px);
 }
 
@@ -211,9 +225,11 @@ color: var(--light-text);
 
 
    .contenitore.selected {
-  box-shadow: 0 0 15px rgba(0, 221, 255, 0.8);
-  border: none;
+  box-shadow: 0 0 12px rgba(0, 173, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #00BFFF;
 }
+
 
     .contenitore img {
       width: 100px;
@@ -221,9 +237,11 @@ color: var(--light-text);
       object-fit: contain;
     }
 
-    .label {
-      font-size: 14px;
-    }
+.label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
 
     .fade-in {
       opacity: 0;
@@ -236,20 +254,28 @@ color: var(--light-text);
       }
     }
 
-    #darkToggleBtn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background-color: var(--accent);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      z-index: 999;
-      transition: background-color 0.3s ease;
-    }
+ #darkToggleBtn {
+  background: linear-gradient(135deg, #008DD5, #005B99);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 8px 12px;
+  display: flex;
+  color: white;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: var(--accent);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  font-size: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+ transition: all 0.3s ease;
+
+}
+
 
     #darkToggleBtn:hover {
       background-color: #0056b3;
@@ -265,6 +291,10 @@ color: var(--light-text);
   border: 1px solid rgba(255,255,255,0.1);
   backdrop-filter: blur(6px);
 }
+    body.dark .inputs-wrapper {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
 
 .inputs-wrapper label {
   font-weight: 400;
@@ -289,16 +319,8 @@ color: var(--light-text);
   color: #9FFCDF99;
 }
 
-#darkToggleBtn {
-  background: linear-gradient(135deg, #008DD5, #005B99);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+
 
     .sottotitolo {
   color: #00f0ff;
@@ -336,6 +358,33 @@ body:not(.dark) .carosello::-webkit-scrollbar-thumb {
 body:not(.dark) .carosello::-webkit-scrollbar-thumb:hover {
   background: #006bb0;
 }
+    @media (max-width: 480px) {
+  .contenitore {
+    width: 80px;
+  }
+
+  .immagine-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .bottoni {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+    
+body:not(.dark) .inputs-wrapper {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+    @media (max-width: 480px) {
+  body {
+    padding: 1.5em;
+  }
+}
+
+
 
 
 
@@ -343,7 +392,9 @@ body:not(.dark) .carosello::-webkit-scrollbar-thumb:hover {
   </style>
 </head>
 <body>
-  <div id="darkToggleBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+  <div id="darkToggleBtn" role="button" tabindex="0" onclick="toggleDarkMode()" title="Attiva/disattiva modalità scura" aria-label="Attiva/disattiva modalità scura">
+
+
     <span id="darkIcon">🌙</span>
   </div>
   <h1>Calcolatore Cibo</h1>
@@ -629,6 +680,14 @@ carosello.addEventListener('mousemove', (e) => {
   localStorage.setItem("darkMode", isDark);
   document.getElementById("darkIcon").textContent = isDark ? "☀️" : "🌙";
 }
+    document.getElementById("darkToggleBtn").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    toggleDarkMode();
+  }
+});
+
+    
 
 
 window.addEventListener("load", () => {
