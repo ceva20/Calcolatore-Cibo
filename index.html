@@ -53,26 +53,29 @@ body:not(.dark) p {
 
 
 
-   html, body {
+  html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
   transition: background-color 0.5s ease, color 0.5s ease;
 }
-
 
 body {
   font-family: 'Inter', sans-serif;
   background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
+  color: var(--light-text);
 }
+
 body.dark {
   background: var(--dark-bg);
   color: var(--dark-text);
 }
 
 
+html.dark {
+  background: var(--dark-bg);
+}
 
     input, button {
       padding: 10px;
@@ -697,9 +700,11 @@ carosello.addEventListener('mousemove', (e) => {
 
   function toggleDarkMode() {
   const isDark = document.body.classList.toggle("dark");
+  document.documentElement.classList.toggle("dark", isDark); // AGGIUNTA
   localStorage.setItem("darkMode", isDark);
   document.getElementById("darkIcon").textContent = isDark ? "☀️" : "🌙";
 }
+
     document.getElementById("darkToggleBtn").addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === " ") {
     e.preventDefault();
@@ -713,6 +718,7 @@ carosello.addEventListener('mousemove', (e) => {
 window.addEventListener("load", () => {
   const savedMode = localStorage.getItem("darkMode") === "true";
   document.body.classList.toggle("dark", savedMode);
+  document.documentElement.classList.toggle("dark", savedMode); // AGGIUNTA
   document.getElementById("darkIcon").textContent = savedMode ? "☀️" : "🌙";
 });
 
