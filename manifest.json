@@ -1,7 +1,8 @@
 {
   "name": "Calcolatore Cibo",
   "short_name": "Cibo",
-  "start_url": ".",
+  "start_url": "/Calcolatore-Cibo/",
+  "scope": "/Calcolatore-Cibo/",
   "display": "standalone",
   "background_color": "#FFF8EB",
   "theme_color": "#008DD5",
