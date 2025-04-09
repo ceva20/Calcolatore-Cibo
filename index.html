@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
 
 
@@ -476,6 +476,12 @@ body.dark .wrapper {
     font-size: 12px; /* leggermente più piccolo su mobile */
      padding: 0 5px; /* Aggiunto padding laterale di 5px */
 }
+      @supports (-webkit-touch-callout: none) {
+  body {
+    padding-top: env(safe-area-inset-top); /* utile per iPhone con notch */
+  }
+}
+
    
 
 
