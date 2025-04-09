@@ -60,20 +60,27 @@ body:not(.dark) p {
       transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-    body {
-      max-width: 600px;
-      margin: 2em auto;
-      padding: 1em;
-        background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
-      color: var(--light-text);
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
+body {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
+  color: var(--light-text);
+}
 
-    body.dark {
-      background: var(--dark-bg);
-      color: var(--dark-text);
-    }
+body.dark {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  border-radius: 10px;
+  box-shadow: 0 0 25px 5px rgba(0, 141, 213, 0.3); /* GLOW blu */
+}
+
+
 
     input, button {
       padding: 10px;
@@ -323,7 +330,7 @@ button.reset:hover {
 
 
     .sottotitolo {
-  color: #025aa8a;
+  color: #00f0ff;
   font-weight: 600;
   text-align: center;
   margin-top: 20px;
