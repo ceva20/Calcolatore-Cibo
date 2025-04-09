@@ -390,9 +390,10 @@ body:not(.dark) .inputs-wrapper {
   }
 }
     .wrapper {
-  max-width: 600px;
+   max-width: 600px;
+  width: 90%;
   margin: 2em auto;
-  padding: 1em;
+  padding: 1.5em 1em;
   background: linear-gradient(180deg, #FFF8EB 0%, #FFEFD5 100%);
   color: var(--light-text);
   border-radius: 10px;
@@ -404,6 +405,61 @@ body.dark .wrapper {
   color: var(--dark-text);
   box-shadow: 0 0 25px 5px rgba(0, 141, 213, 0.3); /* Glow azzurro */
 }
+@media (max-width: 480px) {
+  .wrapper {
+    width: auto;
+    margin: 2em auto;
+    padding: 1.5em;
+    max-width: none;
+    min-width: 320px; /* garantisce una larghezza minima sufficiente per affiancare i pulsanti */
+    box-shadow: none; /* rimuove glow laterale se vuoi */
+  }
+
+  .bottoni {
+    flex-wrap: nowrap; /* impedisce che si spostino su due righe */
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .bottoni button {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+
+    @media (max-width: 480px) {
+  body.dark .wrapper {
+    box-shadow: none;
+  }
+}
+    @media (max-width: 480px) {
+  body {
+    padding-top: 0;
+  }
+
+  .wrapper {
+    margin-top: 1em;
+  }
+
+  h1 {
+    margin-top: 10px;
+    font-size: 26px; /* opzionale: più compatto su mobile */
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    font-size: 15px; /* opzionale: rende tutto più compatto */
+  }
+
+  .sottotitolo {
+    margin-top: 10px;
+  }
+}
+
+
+
 
 
 
